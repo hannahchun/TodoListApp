@@ -63,6 +63,7 @@ public class TodoMain {
 				break;
 				
 			case "exit":
+				System.out.println("\n'Program ended!!'\n");
 				quit = true;
 				break;
 
