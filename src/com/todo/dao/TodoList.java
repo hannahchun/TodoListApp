@@ -32,14 +32,12 @@ public class TodoList {
 
 	public void sortByName() {
 		Collections.sort(list, new TodoSortByName());
-
 	}
 
 	public void listAll() {
-		System.out.println("\n"
-				+ "inside list_All method\n");
+		System.out.println("[Item List] \n");
 		for (TodoItem myitem : list) {
-			System.out.println(myitem.getTitle() + myitem.getDesc());
+			System.out.println("(" + myitem.getTitle() + ") -> " + myitem.getDesc() + " - " + myitem. getCurrent_date());
 		}
 	}
 	
