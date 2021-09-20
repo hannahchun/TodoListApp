@@ -1,0 +1,10 @@
+Breakfast##With my roommate##2021/09/21 24:13:49
+Assignment##C programming, Data Structure##2021/09/21 24:15:25
+Lunch##With my friends##2021/09/21 24:16:35
+Snack##Fruits and Cracker##2021/09/21 24:17:22
+Discussion##English Composition##2021/09/21 24:17:38
+Dinner##With my professor##2021/09/21 24:17:54
+Hospital##Asthma diagnosis##2021/09/21 24:18:08
+Project##Practical Project (Spring FrameWork)##2021/09/21 24:18:30
+Midterm##Industrial economics##2021/09/21 24:21:55
+Meeting##ISEL Seminar##2021/09/21 24:23:29
