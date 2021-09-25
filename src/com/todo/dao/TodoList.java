@@ -36,8 +36,14 @@ public class TodoList {
 
 	public void listAll() {
 		System.out.println("[Item List] \n");
-		for (TodoItem myitem : list) {
-			System.out.println("(" + myitem.getTitle() + ") -> " + myitem.getDesc() + " - " + myitem. getCurrent_date());
+		int num=list.size();
+		for (int i=0; i<num ; i++) {
+			System.out.println(i+1
+									+ ". [" + list.get(i).getCategory()  
+									+"] " + list.get(i).getTitle() 
+									+ " - " + list.get(i).getDesc()
+									+ " - " + list.get(i).getDue_date()
+									+ " - " + list.get(i).getCurrent_date());
 		}
 	}
 	
@@ -48,7 +54,7 @@ public class TodoList {
 	public void sortByDate() {
 		Collections.sort(list, new TodoSortByDate());
 	}
-
+	
 	public int indexOf(TodoItem t) {
 		return list.indexOf(t);
 	}

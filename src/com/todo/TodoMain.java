@@ -21,6 +21,8 @@ public class TodoMain {
 			Menu.prompt();
 			isList = false;
 			String choice = sc.next();
+			String keyword=sc.nextLine().trim();
+			
 			switch (choice) {
 
 			case "add":
@@ -38,7 +40,7 @@ public class TodoMain {
 			case "ls":
 				TodoUtil.listAll(l);
 				break;
-
+				
 			case "ls_name_asc":
 				System.out.println("\n'List sorted by name'\n");
 				l.sortByName();
@@ -57,7 +59,26 @@ public class TodoMain {
 				l.sortByDate();
 				isList = true;
 				break;
+				
+			case "find":
+				TodoUtil.KeyWordFind(l,keyword);
+				break;
+				
+			case "ls_date_desc":
+				System.out.println("\n'List sorted by date in reverse order'\n");
+				l.sortByDate();
+				l.reverseList();
+				isList = true;
+				break;
 			
+			case "find_cate":
+				TodoUtil.KeyWordFindCate(l,keyword);
+				break;
+				
+			case "ls_cate":
+				TodoUtil.PrintCat(l);
+				break;
+				
 			case "help":
 				Menu.displaymenu();
 				break;
