@@ -14,14 +14,14 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
-		TodoUtil.loadList(l,"todolist.txt");
+		TodoUtil.loadList(l, "todolist.txt");
 		Menu.displaymenu();
 		
 		do {
 			Menu.prompt();
 			isList = false;
 			String choice = sc.next();
-			String keyword=sc.nextLine().trim();
+			String keyword= sc.nextLine().trim();
 			
 			switch (choice) {
 
@@ -40,43 +40,47 @@ public class TodoMain {
 			case "ls":
 				TodoUtil.listAll(l);
 				break;
-				
+
 			case "ls_name_asc":
-				System.out.println("\n'List sorted by name'\n");
+				System.out.println("'List sorted by title'\n");
 				l.sortByName();
 				isList = true;
 				break;
-
+			
 			case "ls_name_desc":
-				System.out.println("\n'List sorted by name in reverse order'\n");
+				System.out.println("'List sorted by title in reverse order'\n");
 				l.sortByName();
 				l.reverseList();
 				isList = true;
 				break;
 				
 			case "ls_date":
-				System.out.println("\n'List sorted by date'\n");
+				System.out.println("'List sorted by date'\n");
 				l.sortByDate();
+				isList = true;
+				break;
+			
+			case "ls_date_desc":
+				System.out.println("'List sorted by date in reverse order'\n");
+				//l.sortByDate();
+				//l.reverseList();
+				l.sortByDateDesc();
 				isList = true;
 				break;
 				
 			case "find":
-				TodoUtil.KeyWordFind(l,keyword);
-				break;
-				
-			case "ls_date_desc":
-				System.out.println("\n'List sorted by date in reverse order'\n");
-				l.sortByDate();
-				l.reverseList();
-				isList = true;
+				System.out.println("'Find items that include the above keyword'\n");
+				TodoUtil.findKeyword(l,keyword);
 				break;
 			
 			case "find_cate":
-				TodoUtil.KeyWordFindCate(l,keyword);
+				System.out.println("'Find items whose category include the above keyword'\n");
+				TodoUtil.findCateKeyword(l,keyword);
 				break;
-				
+			
 			case "ls_cate":
-				TodoUtil.PrintCat(l);
+				System.out.println("'Find items whose category include the above keyword'\n");
+				TodoUtil.findCategories(l);
 				break;
 				
 			case "help":
@@ -84,8 +88,8 @@ public class TodoMain {
 				break;
 				
 			case "exit":
-				System.out.println("\n'Program ended!!'\n");
 				quit = true;
+				TodoUtil.saveList(l, "todolist.txt");
 				break;
 
 			default:
@@ -96,6 +100,5 @@ public class TodoMain {
 			
 			if(isList) l.listAll();
 		} while (!quit);
-		TodoUtil.saveList(l,"todolist.txt");
 	}
 }

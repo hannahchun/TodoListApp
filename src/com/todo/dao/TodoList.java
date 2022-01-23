@@ -2,6 +2,7 @@ package com.todo.dao;
 
 import java.util.*;
 
+import com.todo.service.DateComparatorDesc;
 import com.todo.service.TodoSortByDate;
 import com.todo.service.TodoSortByName;
 
@@ -29,21 +30,27 @@ public class TodoList {
 	public ArrayList<TodoItem> getList() {
 		return new ArrayList<TodoItem>(list);
 	}
-
+	
+	public int getCount() {
+		return list.size();
+	}
+	
+	public TodoItem getItem(int index) {
+		return list.get(index);
+	}
+	
 	public void sortByName() {
 		Collections.sort(list, new TodoSortByName());
 	}
 
 	public void listAll() {
-		System.out.println("[Item List] \n");
+		System.out.print("[Item List, ");
 		int num=list.size();
-		for (int i=0; i<num ; i++) {
-			System.out.println(i+1
-									+ ". [" + list.get(i).getCategory()  
-									+"] " + list.get(i).getTitle() 
-									+ " - " + list.get(i).getDesc()
-									+ " - " + list.get(i).getDue_date()
-									+ " - " + list.get(i).getCurrent_date());
+		System.out.println("a total of " + num + " items]");
+		int cnt=0;
+		for (TodoItem item : list) {
+			cnt++;
+			System.out.println(cnt +". " + item.toString());
 		}
 	}
 	
@@ -55,6 +62,10 @@ public class TodoList {
 		Collections.sort(list, new TodoSortByDate());
 	}
 	
+	public void sortByDateDesc() {
+		Collections.sort(list, new DateComparatorDesc());
+	}
+
 	public int indexOf(TodoItem t) {
 		return list.indexOf(t);
 	}
