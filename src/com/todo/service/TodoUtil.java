@@ -41,33 +41,28 @@ public class TodoUtil {
 	}
 	
 	public static void deleteItem(TodoList l) {
-		
-		int num;
+		int index;
 		String des; //decision
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("\n" + "[Delete Item]\n" + "Number of the item to remove > ");
 		
-		num = sc.nextInt();
+		index = sc.nextInt();
 		
-		int cnt=1;
-		for (TodoItem item : l.getList()) {
-			if(cnt==num) {
-				System.out.println(cnt + ". " + item.toString());
-				System.out.print("Delete this item? (y/n)");
-				des=sc.next();
-				if(des.equals("y")) {
-					l.deleteItem(item);
-					System.out.println("The item is deleted!");
-				}
-				break;
-			}
-			cnt++;
-		}
-		
-		if(cnt==l.getList().size()+1) {
+		if(index > l.getCount()) {
 			System.out.println("Non-existing item!");
+			return;
 		}
+		
+		System.out.println(index + ". " + l.getItem(index-1).toString());
+		
+		System.out.print("Delete this item? (y/n)");
+		des=sc.next();
+		if(des.equals("y")) {
+			l.deleteItem(l.getItem(index-1));
+			System.out.println("The item is deleted!");
+		}
+		
 	}
 	
 	public static void updateItem(TodoList l) {
@@ -147,24 +142,21 @@ public class TodoUtil {
 	}
 	
 	public static void findCategories(TodoList l) {
-		List<String> cat = new ArrayList<String>();
 		
-		for (TodoItem item : l.getList())
-			cat.add(item.getCategory());
+		Set<String> clist = new HashSet<String>();
 		
-		Set<String> set = new HashSet<>(cat);
-		
-		Iterator<String> itr = set.iterator();
-		
-		int cnt=0;
-		while(itr.hasNext()) {
-			if(cnt==0)
-				System.out.print(itr.next());
-			else
-				System.out.print(" / " + itr.next());
-			cnt++;
+		for(TodoItem c : l.getList()) {
+			clist.add(c.getCategory());
 		}
-		System.out.print("\n");
+		
+		Iterator it = clist.iterator();
+		while(it.hasNext()) {
+			String s = (String)it.next();
+			System.out.print(s);
+			if(it.hasNext())
+				System.out.print("/");
+		}
+		System.out.printf("\nA total of %d categories\n", clist.size());
 	}
 	
 	public static void saveList(TodoList l, String filename) {
@@ -224,4 +216,3 @@ public class TodoUtil {
 	}
 
 }
-
